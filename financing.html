@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Financing | Keys & Capital Realty</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- JavaScript -->
+  <script>
+    function calculateMortgage() {
+      const amount = parseFloat(document.getElementById("amount").value);
+      const rate = parseFloat(document.getElementById("rate").value) / 100 / 12;
+      const years = parseFloat(document.getElementById("years").value) * 12;
+
+      if (isNaN(amount) || isNaN(rate) || isNaN(years)) {
+        document.getElementById("result").textContent =
+          "Please enter valid numbers in all fields.";
+        return;
+      }
+
+      const x = Math.pow(1 + rate, years);
+      const monthly = (amount * x * rate) / (x - 1);
+
+      document.getElementById("result").textContent =
+        "Estimated Monthly Payment: $" + monthly.toFixed(2);
+    }
+  </script>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <h1>Keys & Capital Realty</h1>
+
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="financing.html">Financing</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <h2>Financing Options</h2>
+    <p>
+      Understanding your financing options is an important step in the
+      home-buying process. Use our mortgage calculator below to estimate your
+      monthly payment.
+    </p>
+
+    <!-- Mortgage Calculator -->
+    <section class="calculator">
+      <label for="amount">Loan Amount ($)</label><br />
+      <input type="number" id="amount" placeholder="250000" /><br /><br />
+
+      <label for="rate">Interest Rate (%)</label><br />
+      <input type="number" id="rate" placeholder="6.5" /><br /><br />
+
+      <label for="years">Loan Term (Years)</label><br />
+      <input type="number" id="years" placeholder="30" /><br /><br />
+
+      <button onclick="calculateMortgage()">Calculate Payment</button>
+
+      <p id="result" class="result"></p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>
+      © 2025 Keys & Capital Realty |
+      Sheena Ari | 1-470-000-000 |
+      sheena.ari@keysandcapital.com
+    </p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mortgage Calculator — Keys & Capital Realty</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html">
+      <img src="images/logo-placeholder.png" width="64">
+      <span class="brand-text">Keys & Capital Realty</span>
+    </a>
+  </div>
+</header>
+
+<section class="container">
+  <h1>Mortgage Calculator</h1>
+
+  <div class="card">
+    <label>Home Price</label>
+    <input type="number" id="price">
+
+    <label>Down Payment</label>
+    <input type="number" id="down">
+
+    <label>Interest Rate (%)</label>
+    <input type="number" id="rate">
+
+    <label>Loan Term (Years)</label>
+    <input type="number" id="years" value="30">
+
+    <button class="btn btn-primary" onclick="calculate()">Calculate</button>
+
+    <h2 id="result"></h2>
+  </div>
+</section>
+
+<script>
+function calculate() {
+  let price = +document.getElementById("price").value;
+  let down = +document.getElementById("down").value;
+  let rate = +document.getElementById("rate").value / 100 / 12;
+  let years = +document.getElementById("years").value;
+  let n = years * 12;
+
+  let loan = price - down;
+  let m = loan * rate / (1 - Math.pow(1 + rate, -n));
+
+  document.getElementById("result").innerHTML = 
+    "Estimated Payment: $" + m.toFixed(2) + " / month";
+}
+</script>
+
+</body>
+</html>
